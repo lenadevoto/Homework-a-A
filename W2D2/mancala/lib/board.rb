@@ -1,30 +1,27 @@
 class Board
-  attr_accessor :cups, :side_one, :side_two
+  attr_accessor :cups, :p1_side, :p2_side, :stone, :p1_goal, :p2_goal
 
-# #attr_reader
-#   def cups
-#     @cups
-#   end
-#
-# #attr_writer
-# def cups=(value)
-#   @cups = value
-# end
 #
   def initialize(name1, name2)
-    @cups = Array.new(14) {[]}
+    @cups = Array.new(14) {[:stone,:stone,:stone,:stone]}
+    @cups[6] = []
+    @cups[13] = []
+    @p1_goal = @cups[6]
+    @p2_goal = @cups[13]
+    @p1_side = @cups[0..5]
+    @p2_side = @cups[7..12]
 
   end
+
   def place_stones
-    @side_one = @cups[0..7]
-    @side_two = @cups[8..14]
-    @cups.map! do |cup|
-      cup << 4 unless @side_one.last || @side_two.last
-    end
-    # helper method to #initialize every non-store cup with four stones each
+
   end
 
   def valid_move?(start_pos)
+    
+    raise "Invalid starting cup" if @cups[start_pos] == nil
+    raise "Invalid starting cup" if start_pos < 0
+
   end
 
   def make_move(start_pos, current_player_name)
